@@ -13,6 +13,7 @@ export default class Cell extends Component {
   constructor(props) {
     super(props);
     this.toggleState = this.toggleState.bind(this);
+    setInterval(() => this.evaluateLife(), 1000);
   }
 
   toggleState() {
@@ -28,12 +29,14 @@ export default class Cell extends Component {
   }
 
   evaluateLife() {
-    let alive = this.getNumNeighboursAlive();
-    if(this.isAlive() && (alive < 2 || alive > 3)) {
-      //kill cell
-      this.kill();
-    } else if(!this.isAlive() && alive === 2) {
-      this.resurrect();
+    if(this.props.state.state !== 'Pause') {
+      let alive = this.getNumNeighboursAlive();
+      if(this.isAlive() && (alive < 2 || alive > 3)) {
+        //kill cell
+        this.kill();
+      } else if(!this.isAlive() && alive === 2) {
+        this.resurrect();
+      }
     }
   }
 
