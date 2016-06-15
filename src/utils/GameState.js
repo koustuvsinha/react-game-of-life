@@ -5,8 +5,8 @@ const gameState =  new class GameState {
     @observable gameArray = [];
     @observable rowNum = 40;
     @observable colNum = 20;
-    @observable state = 'Play';
-    @observable nextState = 'Pause';
+    @observable state = 'Pause';
+    @observable nextState = 'Play';
 
     constructor() {
       this.prepareGameTable();
@@ -32,11 +32,11 @@ const gameState =  new class GameState {
     }
 
     toggleGameState() {
-      if(this.state == 'Play') {
-        this.state = 'Pause';
+      if(this.state == 'Pause') {
+        this.state = 'Play';
         this.nextState = 'Pause';
       } else {
-        this.state = 'Play';
+        this.state = 'Pause';
         this.nextState = 'Play';
       }
     }

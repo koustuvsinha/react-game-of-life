@@ -9,8 +9,7 @@ export default class Cell extends Component {
   constructor(props) {
     super(props);
     this.toggleState = this.toggleState.bind(this);
-    let id = setInterval(() => this.evaluateLife(),1000);
-    this.state({id : id});
+    setInterval(() => this.evaluateLife(),1000);
   }
 
   toggleState() {
@@ -27,13 +26,16 @@ export default class Cell extends Component {
   }
 
   evaluateLife() {
-    let alive = this.getNumNeighboursAlive();
-    if(this.isAlive() && alive < 2) {
-      //kill cell
-      this.kill();
-    }
-    if(!this.isAlive() && alive > 2) {
-      this.resurrect();
+    // dont run if status is Pause
+    if(this.props.state.state !== 'Pause') {
+      let alive = this.getNumNeighboursAlive();
+      if(this.isAlive() && alive < 2) {
+        //kill cell
+        this.kill();
+      }
+      if(!this.isAlive() && alive > 2) {
+        this.resurrect();
+      }
     }
   }
 
