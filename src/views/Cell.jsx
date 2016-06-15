@@ -29,11 +29,10 @@ export default class Cell extends Component {
 
   evaluateLife() {
     let alive = this.getNumNeighboursAlive();
-    if(this.isAlive() && alive < 2) {
+    if(this.isAlive() && (alive < 2 || alive > 3)) {
       //kill cell
       this.kill();
-    }
-    if(!this.isAlive() && alive > 2) {
+    } else if(!this.isAlive() && alive === 2) {
       this.resurrect();
     }
   }
