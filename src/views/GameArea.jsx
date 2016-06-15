@@ -9,12 +9,23 @@ export default class GameArea extends Component {
   constructor(props) {
     super(props);
     this.cells = [];
+    setInterval(() => this.update(),1000);
+  }
+  update() {
+    // dont run if status is Pause
+    if(gameState.state !== 'Pause') {
+      for(var i = 0; i< 20; i++) {
+        for(var j = 0; j<40; j++) {
+          this.refs['cell-' + i + '' + j].evaluateLife();
+        }
+      }
+    }
   }
   render() {
     this.cells = [];
     for(var i = 0; i< 20; i++) {
       for(var j = 0; j<40; j++) {
-        this.cells.push(<Cell x={i} y={j} state={gameState}/>);
+        this.cells.push(<Cell x={i} y={j} state={gameState} ref={'cell-' + i + '' + j}/>);
       }
     }
     return(
