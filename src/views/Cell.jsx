@@ -3,6 +3,10 @@ import ReactDOM from 'react-dom';
 import gameState from '../utils/GameState';
 import {observer} from 'mobx-react';
 
+var hiddenDiv = {
+  display: 'none'
+}
+
 @observer
 export default class Cell extends Component {
 
@@ -41,13 +45,17 @@ export default class Cell extends Component {
 
   kill() {
     if(this.isAlive()) {
-      this.props.state.toggleState(this.props.x,this.props.y);
+      setTimeout(() => {
+        this.props.state.toggleState(this.props.x,this.props.y);
+      }, 500);
     }
   }
 
   resurrect() {
     if(!this.isAlive()) {
-      this.props.state.toggleState(this.props.x,this.props.y);
+      setTimeout(() => {
+        this.props.state.toggleState(this.props.x,this.props.y);
+      }, 500);
     }
   }
 
@@ -59,7 +67,9 @@ export default class Cell extends Component {
   render() {
     return(
       <div className={`cell cell-${this.props.state.getStatus(this.props.x,this.props.y)}`} onClick={this.toggleState}>
-        &nbsp;
+        <div style={hiddenDiv}>
+          {this.props.state.state}
+        </div>
       </div>
     );
   }

@@ -26,7 +26,7 @@ export default class GameControl extends Component {
           {this.props.state.nextState}
         </button>
         <button className="ui labeled icon button" onClick={this.clear}>
-          <i className="icon clear"></i>
+          <i className="icon refresh"></i>
           Clear
         </button>
       </div>
