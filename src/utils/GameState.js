@@ -2,46 +2,25 @@ import {observable, computed} from 'mobx';
 import request from 'request';
 
 const gameState =  new class GameState {
-    @observable fccusers = [];
-    @observable currentscope = [];
-    @observable currentPage = 0;
-    @observable currentType = '';
+    @observable gameArray = [];
+    @observable rowNum = 40;
+    @observable colNum = 20;
 
     constructor() {
-        // default fetch recent ones
-        this.fetchRecentUsers();
-        this.pageSize = 6;
+      this.prepareGameTable();
     }
 
-    fetchRecentUsers() {
-      request.get('https://fcctop100.herokuapp.com/api/fccusers/top/recent',
-        {json: true, withCredentials: false}, (req,res,body) => {
-          this.fccusers = body;
-          this.populateScope(1);
-          this.currentType = 'Recent (30 Days)';
-        })
+    prepareGameTable() {
+      var row = [...Array(this.rowNum)];
+      row = row.map((x,i) => 0);
+      this.gameArray = [...Array(this.colNum)];
+      this.gameArray = this.gameArray.map((y,i) => row);
+      console.log(this.gameArray);
     }
 
-    fetchAllTimeUsers() {
-      request.get('https://fcctop100.herokuapp.com/api/fccusers/top/alltime',
-        {json: true, withCredentials: false}, (req,res,body) => {
-          this.fccusers = body;
-          this.populateScope(1);
-          this.currentType = 'All Time';
-        })
+    getStatus(x,y) {
+      return this.gameArray[x][y];
     }
-
-    @computed get numPages() {
-      return Math.floor(this.fccusers.length / this.pageSize) + 1
-    }
-
-    populateScope(pageNum) {
-      let start = (pageNum - 1) * this.pageSize;
-      let end = start + this.pageSize;
-      this.currentscope = this.fccusers.slice(start, end);
-      this.currentPage = pageNum - 1;
-    }
-
 }();
 
 export default gameState;

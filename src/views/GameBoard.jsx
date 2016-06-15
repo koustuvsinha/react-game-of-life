@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 import gameState from '../utils/GameState';
+import GameArea from './GameArea'
 import {observer} from 'mobx-react';
 
 @observer
@@ -14,6 +15,7 @@ export default class GameBoard extends Component {
           </div>
         </div>
         <hr/>
+        <GameArea/>
       </div>
     );
   }
