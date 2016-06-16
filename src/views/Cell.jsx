@@ -13,7 +13,7 @@ export default class Cell extends Component {
   constructor(props) {
     super(props);
     this.toggleState = this.toggleState.bind(this);
-    setInterval(() => this.evaluateLife(), 1000);
+    setInterval(() => this.evaluateLife(), 500);
   }
 
   toggleState() {
@@ -36,7 +36,7 @@ export default class Cell extends Component {
         this.kill();
       } else if(this.isAlive() && (alive == 2 || alive == 3)) {
         this.resurrect();
-      } else if(!this.isAlive() && alive === 2) {
+      } else if(!this.isAlive() && alive === 3) {
         this.resurrect();
       }
     }
@@ -46,7 +46,7 @@ export default class Cell extends Component {
     if(this.isAlive()) {
       setTimeout(() => {
         this.props.state.toggleState(this.props.x,this.props.y);
-      },100);
+      },10);
     }
   }
 
@@ -54,7 +54,7 @@ export default class Cell extends Component {
     if(!this.isAlive()) {
       setTimeout(() => {
         this.props.state.toggleState(this.props.x,this.props.y);
-      },100);
+      },10);
     }
   }
 
