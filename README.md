@@ -1,7 +1,7 @@
-React-FCC-Leaderboard
+React-Game-Of-Life
 =====================
 
-FCC Leaderboard application built for Freecodecamp Front End project that uses [MobX](https://mobxjs.github.io/mobx) with [React](https://facebook.github.io/react), along with [Semantic UI](http://semantic-ui.com/).
+[Conway's Game of Life](https://www.math.cornell.edu/~lipa/mec/lesson6.html) app built for Freecodecamp Front End project that uses [MobX](https://mobxjs.github.io/mobx) with [React](https://facebook.github.io/react), along with [Semantic UI](http://semantic-ui.com/).
 
 Base boilerplate forked from [mobx-react-boilerplate](https://github.com/mobxjs/mobx-react-boilerplate)
 
