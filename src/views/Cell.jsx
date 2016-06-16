@@ -34,6 +34,8 @@ export default class Cell extends Component {
       if(this.isAlive() && (alive < 2 || alive > 3)) {
         //kill cell
         this.kill();
+      } else if(this.isAlive() && (alive == 2 || alive == 3)) {
+        this.resurrect();
       } else if(!this.isAlive() && alive === 2) {
         this.resurrect();
       }
